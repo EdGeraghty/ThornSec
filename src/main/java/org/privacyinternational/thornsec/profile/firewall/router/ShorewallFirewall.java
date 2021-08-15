@@ -503,20 +503,16 @@ public class ShorewallFirewall extends AFirewallProfile {
 
 		zones.appendLine("Internet\tipv4");
 
-		getServerModel().getNetworkInterfaces()
-		.stream()
-		.filter(nic -> nic instanceof MACVLANTrunkModel)
-		.map(MACVLANTrunkModel.class::cast)
-		.forEach(nic -> {
-			nic.getVLANs().forEach(vlan -> {
-				zones.appendLine("#" + vlan.getIface());
-				zones.appendLine(cleanZone(vlan.getIface()) + "\tipv4");
+		getNetworkModel().getSubnets()
+			.forEach( (subnet, machines) -> {
+				zones.appendLine("#" + subnet.getVLAN());
+				zones.appendLine(cleanZone(subnet.getVLAN()) + "\tipv4");
 
-				getNetworkModel().getMachines(vlan.getType()).forEach(machine -> {
+				machines.forEach( (machine) -> {
 					zones.appendText(cleanZone(machine.getLabel()));
 					zones.appendText(machine.getType().equals(Router.class)
 										? ""
-										: ":" + cleanZone(vlan.getIface())
+										: ":" + cleanZone(subnet.getVLAN())
 					);
 					zones.appendText(machine.getType().equals(Router.class)
 										? "\tfirewall"
@@ -528,7 +524,6 @@ public class ShorewallFirewall extends AFirewallProfile {
 
 				zones.appendCarriageReturn();
 			});
-		});
 
 		return zones;
 	}
