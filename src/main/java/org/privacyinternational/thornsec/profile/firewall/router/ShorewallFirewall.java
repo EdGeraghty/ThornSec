@@ -467,12 +467,12 @@ public class ShorewallFirewall extends AFirewallProfile {
 
 		// Iterate over every machine to build all of its rules
 		getNetworkModel().getMachines().forEach((machine) -> {
+			Comment machineComment = new Comment(machine.getLabel());
+			rules.add(machineComment);
+
 			if (null == machine.getFirewallRules() || machine.getFirewallRules().isEmpty()) {
 				return;
 			}
-
-			Comment machineComment = new Comment(machine.getLabel());
-			rules.add(machineComment);
 
 			machine.getFirewallRules().forEach(rule -> {
 				try {
