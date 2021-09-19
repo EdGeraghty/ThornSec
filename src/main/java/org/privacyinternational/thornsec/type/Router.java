@@ -107,6 +107,8 @@ public class Router extends Server {
 				.iterator()
 				.next();
 
+		lanNIC.setDirection(Direction.NONE); //You're not LAN facing any more!
+
 		final MACVLANTrunkModel trunk = new MACVLANTrunkModel(lanNIC.getData(), getNetworkModel());
 		getMachineModel().addNetworkInterface(trunk);
 
