@@ -120,7 +120,7 @@ public class ShorewallFirewall extends AFirewallProfile {
 			this.setDestinationSubZone(
 				rule.getDestinations()
 					.stream()
-					.map(destination -> destination.getHost())
+					.map(HostName::getHost)
 					.map(label -> getNetworkModel().getMachineModel(label).get().getIPs())
 					.flatMap(Collection::stream)
 					.map(ip -> ip.withoutPrefixLength().toCompressedString())
