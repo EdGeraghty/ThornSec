@@ -94,10 +94,6 @@ public class ServerModel extends AMachineModel {
 
 		units.addAll(getOS().getUnits());
 
-		for (final AProfile profile : getProfiles().values()) {
-			units.addAll(profile.getUnits());
-		}
-
 		units.addAll(super.getUnits());
 
 		units.addAll(serverConfig());
