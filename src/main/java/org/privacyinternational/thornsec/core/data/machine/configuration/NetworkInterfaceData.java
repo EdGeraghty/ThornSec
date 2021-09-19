@@ -29,7 +29,7 @@ import java.util.Optional;
  */
 public class NetworkInterfaceData extends AData {
 	public enum Direction {
-		LAN, WAN
+		LAN, WAN, NONE
 	}
 
 	public enum Inet {
