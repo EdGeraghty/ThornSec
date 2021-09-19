@@ -605,11 +605,9 @@ public class ShorewallFirewall extends AFirewallProfile {
 		// Then do everything else
 		getServerModel().getNetworkInterfaces()
 		.stream()
-		.filter(nic -> nic instanceof MACVLANTrunkModel)
+		.filter(nic -> Direction.LAN.equals(nic.getDirection()))
 		.forEach(nic -> {
-			((MACVLANTrunkModel)nic).getVLANs().forEach(vlan -> {
-				interfaces.appendLine(buildInterfaceLine(vlan));
-			});
+			interfaces.appendLine(buildInterfaceLine(nic));
 		});
 
 		return interfaces;
