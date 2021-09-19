@@ -121,7 +121,7 @@ public class ShorewallFirewall extends AFirewallProfile {
 				rule.getDestinations()
 					.stream()
 					.map(HostName::getHost)
-					.map(label -> getNetworkModel().getMachineModel(label).get().getIPs())
+					.map(label -> getNetworkModel().getMachineModel(label).orElseThrow().getIPs())
 					.flatMap(Collection::stream)
 					.map(ip -> ip.withoutPrefixLength().toCompressedString())
 					.collect(Collectors.joining(","))
