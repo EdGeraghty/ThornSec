@@ -532,8 +532,6 @@ public class ShorewallFirewall extends AFirewallProfile {
 	public Collection<IUnit> getLiveConfig() throws ARuntimeException {
 		final Collection<IUnit> units = new ArrayList<>();
 
-		units.add(getInterfacesFile());
-
 		units.add(getZonesFile());
 
 		// Now assign machines their (sub)zone, and enforce our maclist
