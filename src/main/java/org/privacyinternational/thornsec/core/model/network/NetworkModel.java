@@ -129,7 +129,7 @@ public class NetworkModel extends AModel {
 	 */
 	public Set<AMachineModel> getMachines(AMachineType type) {
 		return getMachines().stream()
-				.filter(machine -> type.equals(machine.getType()))
+				.filter(type::equals)
 				.collect(Collectors.toSet());
 	}
 
