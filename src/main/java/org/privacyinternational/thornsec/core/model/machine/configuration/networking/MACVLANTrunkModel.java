@@ -9,6 +9,7 @@ package org.privacyinternational.thornsec.core.model.machine.configuration.netwo
 
 import org.privacyinternational.thornsec.core.data.machine.configuration.NetworkInterfaceData;
 import org.privacyinternational.thornsec.core.data.machine.configuration.NetworkInterfaceData.Inet;
+import org.privacyinternational.thornsec.core.data.machine.configuration.NetworkInterfaceData.Direction;
 import org.privacyinternational.thornsec.core.exception.data.InvalidIPAddressException;
 import org.privacyinternational.thornsec.core.exception.data.machine.configuration.InvalidNetworkInterfaceException;
 import org.privacyinternational.thornsec.core.model.network.NetworkModel;
@@ -35,6 +36,7 @@ public class MACVLANTrunkModel extends NetworkInterfaceModel {
 		setIsIPForwarding(true);
 		setIsIPMasquerading(false);
 		setReqdForOnline(true);
+		setDirection(Direction.NONE);
 
 		vlans = new LinkedHashSet<>();
 	}
