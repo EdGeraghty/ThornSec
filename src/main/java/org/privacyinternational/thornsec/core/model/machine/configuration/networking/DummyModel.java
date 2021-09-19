@@ -26,8 +26,8 @@ public class DummyModel extends NetworkInterfaceModel {
 	public DummyModel(NetworkInterfaceData myData, NetworkModel networkModel) throws InvalidNetworkInterfaceException, InvalidIPAddressException {
 		super(myData, networkModel);
 
-		super.setInet(Inet.DUMMY);
-		super.setWeighting(10);
+		setInet(Inet.DUMMY);
+		setWeighting(10);
 	}
 
 	@Override
