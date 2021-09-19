@@ -451,12 +451,10 @@ public class ShorewallFirewall extends AFirewallProfile {
 		assert (null != getServerModel().getNetworkInterfaces());
 		getServerModel().getNetworkInterfaces()
 		.stream()
-		.filter(nic -> nic instanceof MACVLANTrunkModel)
-		.map(MACVLANTrunkModel.class::cast)
+		.filter(nic -> nic instanceof MACVLANModel)
+		.map(MACVLANModel.class::cast)
 		.forEach(nic -> {
-			nic.getVLANs().forEach(vlan -> {
-				hosts.addAll(machines2Host(vlan.getType()));
-			});
+			hosts.addAll(machines2Host(nic.getType()));
 		});
 
 		return hosts;
