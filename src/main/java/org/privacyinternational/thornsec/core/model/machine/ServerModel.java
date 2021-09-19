@@ -35,7 +35,6 @@ import java.util.Optional;
 public class ServerModel extends AMachineModel {
 	// Server-specific
 	private final Processes runningProcesses;
-	private final AFirewallProfile firewall;
 	// private final ConfigFiles configFiles;
 	private final UserAccounts users;
 
@@ -48,7 +47,6 @@ public class ServerModel extends AMachineModel {
 
 		this.runningProcesses = new Processes(this);
 		this.users = new UserAccounts(this);
-		this.firewall = null;//new ShorewallFirewall(this);
 
 		this.setOS();
 		this.addProfiles();
@@ -104,9 +102,6 @@ public class ServerModel extends AMachineModel {
 
 		units.addAll(serverConfig());
 
-		if (getFirewall() != null) { // Some machines don't have firewalls for me to configure
-			units.addAll(getFirewall().getUnits());
-		}
 		units.addAll(this.users.getUnits());
 
 		units.addAll(this.runningProcesses.getUnits());
@@ -145,10 +140,6 @@ public class ServerModel extends AMachineModel {
 
 	protected Processes getProcessModel() {
 		return this.runningProcesses;
-	}
-
-	public AFirewallProfile getFirewall() {
-		return this.firewall;
 	}
 
 	public UserAccounts getUserModel() {
