@@ -614,8 +614,8 @@ public class ShorewallFirewall extends AFirewallProfile {
 	/**
 	 * This turns a NetworkInterfaceModel into an interface line in Shorewall's
 	 * config
-	 * @param nic
-	 * @return
+	 * @param nic NetworkInterfaceModel
+	 * @return the equivalent line for the interfaces file
 	 */
 	private String buildInterfaceLine(NetworkInterfaceModel nic) {
 		String line = "";
@@ -682,10 +682,10 @@ public class ShorewallFirewall extends AFirewallProfile {
 	}
 
 	/**
-	 * Returns a comma-delimited string of all IP addresses for a given machine
+	 * Get a machine's IP addresses
 	 *
-	 * @param machine
-	 * @return
+	 * @param machine The machine whose IPs you wish to get
+	 * @return a comma-delimited string of all IP addresses for a given machine
 	 */
 	private String getAddresses(AMachineModel machine) {
 		final Collection<String> addresses = new ArrayList<>();
